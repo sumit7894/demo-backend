@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json());
 app.get('/',async(req,res)=>{
     try {
+        console.log("Received a GET request");
         return res.status(200).json({
             success:true,
             message:"OK api is working fine",
