@@ -4,6 +4,7 @@ const connect = require('./src/config/database');
 const Product = require('./src/model/Product');
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.get('/',async(req,res)=>{
     try {
