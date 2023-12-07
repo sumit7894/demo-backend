@@ -22,7 +22,10 @@ app.get('/',async(req,res)=>{
         })
     }
 })
-app.post('/api/v1/products/', async (req,res)=>{
+
+const route = express.Router();
+
+app.route('/api/v1/company').post(async (req,res)=>{
     try {
         const response = await Product.create({
             ProductName : req.body.product,
@@ -37,40 +40,17 @@ app.post('/api/v1/products/', async (req,res)=>{
             err:{}
         })
     } catch (error) {
-        console.log(error);
+        console.log("hellow world");
+        console.log("here is the error-",error);
         return res.status(500).json({
             success:false,
             message:"Failed to add the product",
-            dat:{},
-            err:error
-        })
-    }
-})
-app.post('/api/v1/company',async(req,res)=>{
-    const newCompany =  new Product({
-        ProductName : req.body.product,
-        email : req.body.email,
-        password : req.body.password
-    })
-    try{
-        await newCompany.save();
-        res.json({
-            success:true,
-            message:"Product added",
-            data:newCompany,
-            err:{}
-        })
-    }
- catch (error) {
-    console.log(error);
-        res.status(400).json({
-            success:false,
-            message:"Failed to add",
             data:{},
             err:error
         })
-    }   
+    }
 })
+
 app.listen(PORT,async ()=>{
 console.log(`Yup server has started at Port ${PORT}`);
 try {
@@ -79,6 +59,4 @@ try {
 } catch (error) {
     console.log("Connection failed",error);
 }
-
-
 });
