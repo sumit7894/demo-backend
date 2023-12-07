@@ -1,11 +1,12 @@
 const express = require('express');
 const {PORT} = require('./src/config/serverConfig');
-const {MONGODB_URL} = require('./src/config/serverConfig');
+const dotenv = require('dotenv');
 const Product = require('./src/model/Product');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
+dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.get('/',async(req,res)=>{
