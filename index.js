@@ -1,7 +1,8 @@
 const express = require('express');
 const {PORT} = require('./src/config/serverConfig');
-const connect = require('./src/config/database');
+const {MONGODB_URL} = require('./src/config/serverConfig');
 const Product = require('./src/model/Product');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
@@ -57,7 +58,11 @@ app.route('/api/v1/company').post(async (req,res)=>{
 app.listen(PORT,()=>{
 console.log(`Yup server has started at Port ${PORT}`);
 try {
-    connect();
+    mongoose.connect(process.env.MONGODB_URL),{
+        useNewUrlParser:true,
+        useUnifiedTopogy:true,
+        useCreateIndexTrue:true
+    }
     console.log("Server Connected Enjoy!!")
 } catch (error) {
     console.log("Connection failed",error);
