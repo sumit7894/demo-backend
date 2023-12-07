@@ -54,10 +54,10 @@ app.route('/api/v1/company').post(async (req,res)=>{
     }
 })
 
-app.listen(PORT,async ()=>{
+app.listen(PORT,()=>{
 console.log(`Yup server has started at Port ${PORT}`);
 try {
-    await connect();
+    connect();
     console.log("Server Connected Enjoy!!")
 } catch (error) {
     console.log("Connection failed",error);
